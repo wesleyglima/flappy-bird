@@ -1,19 +1,9 @@
-import { Scene } from "phaser";
+import Phaser from "phaser";
 
-export class Game extends Scene {
+export default class Game extends Phaser.Scene {
   constructor() {
     super("Game");
-  }
 
-  get gameHeight() {
-    return this.game.config.height;
-  }
-
-  get gameWidth() {
-    return this.game.config.width;
-  }
-
-  init() {
     this.isGameRunning = true;
     this.isDayTime = true;
     this.dayNightCycleEventTimeDelay = 1000 * 60;
@@ -23,6 +13,14 @@ export class Game extends Scene {
     this.pipesVelocity = 200;
     this.spaceBetweenPipesRange = [100, 120];
     this.pairPipes = [];
+  }
+
+  get gameHeight() {
+    return this.game.config.height;
+  }
+
+  get gameWidth() {
+    return this.game.config.width;
   }
 
   create() {
@@ -123,7 +121,7 @@ export class Game extends Scene {
       .sprite(
         this.gameWidth * 0.15,
         (this.gameHeight - this.ground.height) / 2,
-        "bird"
+        "bird",
       )
       .setBodySize(26, 20)
       .setCollideWorldBounds()
@@ -149,12 +147,12 @@ export class Game extends Scene {
 
   createPipes() {
     const spaceBetweenPipes = Phaser.Math.Between(
-      ...this.spaceBetweenPipesRange
+      ...this.spaceBetweenPipesRange,
     );
 
     const pipeVerticalPosition = Phaser.Math.Between(
       30,
-      this.gameHeight - this.ground.height - 30 - spaceBetweenPipes
+      this.gameHeight - this.ground.height - 30 - spaceBetweenPipes,
     );
 
     this.pipes
@@ -181,7 +179,7 @@ export class Game extends Scene {
       .image(
         this.gameWidth / 2,
         (this.gameHeight - this.ground.height) / 2 + 64,
-        "play-button"
+        "play-button",
       )
       .setDepth(1)
       .setInteractive({
@@ -189,7 +187,7 @@ export class Game extends Scene {
       })
       .setScale(1.2)
       .on("pointerover", () =>
-        this.playButton.setTexture("play-button-pressed")
+        this.playButton.setTexture("play-button-pressed"),
       )
       .on("pointerout", () => this.playButton.setTexture("play-button"))
       .on("pointerdown", () => this.scene.restart());
@@ -206,7 +204,7 @@ export class Game extends Scene {
     this.add.image(
       this.gameWidth / 2,
       (this.gameHeight - this.ground.height) / 2,
-      "gameover"
+      "gameover",
     );
     this.createPlayButton();
   }
@@ -217,7 +215,7 @@ export class Game extends Scene {
       this.ground,
       this.gameOver,
       null,
-      this
+      this,
     );
 
     this.physics.add.collider(this.bird, this.pipes, this.gameOver, null, this);

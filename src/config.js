@@ -1,11 +1,10 @@
-import { AUTO, Scale, Game } from "phaser";
-import { Preload } from "./scenes/Preload";
-import { Splash } from "./scenes/Splash";
-import { Tutorial } from "./scenes/Tutorial";
-import { Game as MainGame } from "./scenes/Game";
+import Preload from "./scenes/Preload";
+import Splash from "./scenes/Splash";
+import Tutorial from "./scenes/Tutorial";
+import Game from "./scenes/Game";
 
 const config = {
-  type: AUTO,
+  type: Phaser.AUTO,
   width: 288,
   height: 512,
   parent: "game-container",
@@ -15,14 +14,14 @@ const config = {
   },
   pixelArt: true,
   scale: {
-    mode: Scale.FIT,
-    autoCenter: Scale.CENTER_BOTH,
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [Preload, Splash, Tutorial, MainGame],
+  scene: [Preload, Splash, Tutorial, Game],
 };
 
 const StartGame = (parent) => {
-  return new Game({ ...config, parent });
+  return new Phaser.Game({ ...config, parent });
 };
 
 export default StartGame;
