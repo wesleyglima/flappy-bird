@@ -3,7 +3,11 @@ import Phaser from "phaser";
 export default class Game extends Phaser.Scene {
   constructor() {
     super("Game");
+  }
 
+  init() {
+    this.gameHeight = this.game.config.height;
+    this.gameWidth = this.game.config.width;
     this.isGameRunning = true;
     this.isDayTime = true;
     this.dayNightCycleEventTimeDelay = 1000 * 60;
@@ -13,14 +17,6 @@ export default class Game extends Phaser.Scene {
     this.pipesVelocity = 200;
     this.spaceBetweenPipesRange = [100, 120];
     this.pairPipes = [];
-  }
-
-  get gameHeight() {
-    return this.game.config.height;
-  }
-
-  get gameWidth() {
-    return this.game.config.width;
   }
 
   create() {

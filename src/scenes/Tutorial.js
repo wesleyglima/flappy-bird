@@ -5,12 +5,9 @@ export default class Tutorial extends Phaser.Scene {
     super("Tutorial");
   }
 
-  get gameHeight() {
-    return this.game.config.height;
-  }
-
-  get gameWidth() {
-    return this.game.config.width;
+  init() {
+    this.gameHeight = this.game.config.height;
+    this.gameWidth = this.game.config.width;
   }
 
   create() {
